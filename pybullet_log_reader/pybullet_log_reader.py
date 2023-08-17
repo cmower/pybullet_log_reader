@@ -4,7 +4,7 @@ import pandas  # https://pandas.pydata.org/
 
 class PyBulletLogReader:
     def __init__(self, file_name):
-        with open(filename, "rb") as f:
+        with open(file_name, "rb") as f:
             keys = f.readline().decode("utf8").rstrip("\n").split(",")
             fmt = f.readline().decode("utf8").rstrip("\n")
 
@@ -30,14 +30,14 @@ class PyBulletLogReader:
         self._log = log
         self._columns = keys
         self._format = fmt
-        self._size = size
+        self._size = sz
 
     @property
     def columns(self):
         return self._columns
 
     @property
-    def format(self):
+    def dtypes(self):
         return self._format
 
     @property
@@ -55,5 +55,5 @@ class PyBulletLogReader:
     def as_pandas(self):
         data = {}
         for column_index, column_name in enumerate(self._columns):
-            data[column_name] = [record[column_index] for record in self.log]
+            data[column_name] = [record[column_index] for record in self._log]
         return pandas.DataFrame(data)
