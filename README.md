@@ -1,2 +1,3 @@
 # pybullet_log_reader
-Class that reads PyByllet log files.
+
+The `pybullet_log_reader` package implements a class that reads PyBullet log files.
